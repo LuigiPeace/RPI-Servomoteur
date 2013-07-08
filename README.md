@@ -1,5 +1,6 @@
 Raspberry Pi - Servomoteur
 ==========================
+![Logo du Raspberry Pi](/RPI.jpg)
 
 Description
 ===========
@@ -25,11 +26,11 @@ vertical de 160°.
 
 Erreurs
 =======
-Si une erreur est rencontrée le script s'arrête et retourne un code erreur.
+Si une erreur est rencontrée le script s'arrête et retourne un code erreur :
 
 <table>
 	<tr>
-		<td style="width:3em;">Code erreur</td>
+		<td>Code erreur</td>
 		<td>Description</td>
 	</tr>
 	

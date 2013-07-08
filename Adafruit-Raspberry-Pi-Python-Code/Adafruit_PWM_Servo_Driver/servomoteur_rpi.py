@@ -15,7 +15,7 @@ def initPWM(adr, freq, d):
 	PWM = PWM(adr, d)
 	PWM.setPWMFreq(freq)
 
-# Cette fonction permet de modifier l'angle (en degre) du servomoteur selon l'axe
+# Cette fonction permet de modifier l'angle (en degres) du servomoteur selon l'axe
 # choisi : True horizontal & False vertical.
 def setAngle(axe, angle_h):
 	angle = angleToPulse(angle_h)
@@ -35,7 +35,7 @@ def setAngle(axe, angle_h):
 def angleToPulse(angle = 90):
 	pulse = ANGLE_DEFAUT
 	
-	if angle >= 0 and angle <= 180:
+	if angle >= angle_min and angle <= angle_max:
 		pulse = angle * ANGLE_DELTA / angle_max + ANGLE_MIN
 	
 	return pulse
@@ -64,13 +64,14 @@ ANGLE_MAX = 680
 ANGLE_DELTA = ANGLE_MAX - ANGLE_MIN
 
 # Angles (en degre)
+angle_min = 0
 angle_max = 180
 
 angle_h = 90
 angle_v = 90
 
 # Nom du script
-NOM_SCRIPT = "servomoteur_rpi"
+NOM_SCRIPT = "servomoteur_rpi.py"
 
 
 
@@ -87,30 +88,41 @@ ERREUR = 0
 # Appareil PWM
 PWM
 
+# Mode debug
+DEBUG = False
+
 
 
 #
 # DEBUT DU PROGRAMME
 #
 
-# Verifie le nombre d'arguments
+# Verifie le nombre d'arguments (le troisieme argument est facultatif)
 if len(sys.argv) != 3:
 	sys.exit(ERREUR = 1)
 
+# Recupere si possible le mode debug
+if len(sys.argv) == 4:
+	DEBUG = bool(sys.argv[3])
+
 # Verifie que le nom du script apparait dans le premier argument
 if sys.argv[0].count(NOM_SCRIPT) != 1:
+	if DEBUG == True:
+		print "Le nom du script ne correspond a celui declarer dans la variable."
 	sys.exit(ERREUR = 2)
 
-# Recupere les angles horizontal & vertical (en degre) et les converties en entier
+# Recupere les angles horizontal et vertical (en degres) et les converties en entier
 angle_h = int(sys.argv[1])
 angle_v = int(sys.argv[2])
 
 # Verifie que les angles sont valides
 if angle_h < 0 or angle_h > 180 or angle_v < 0 or angle_v > 180:
+	if DEBUG == True:
+		print "L'angle horizontal et/ou vertical n'est pas compris entre 0 et 180 degres."
 	sys.exit(ERREUR = 4)
 
 # Initialise l'appareil PWM
-initPWM(ADRESSE, FREQUENCE, True)
+initPWM(ADRESSE, FREQUENCE, DEBUG)
 
 # Modifie les angles du servomoteur
 setAngle(True, angle_h)

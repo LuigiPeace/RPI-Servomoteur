@@ -40,7 +40,7 @@ Si une erreur est rencontrée le script s'arrête et retourne un code erreur :
 	
 	<tr>
 		<td>1</td>
-		<td>Si les deux arguments requis ne sont par fournis le script s'
+		<td>Si les deux arguments requis ne sont pas fournis le script s'
 			arrête.</td>
 	</tr>
 	

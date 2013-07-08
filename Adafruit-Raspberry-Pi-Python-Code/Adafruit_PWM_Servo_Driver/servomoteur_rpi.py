@@ -31,7 +31,7 @@ def setAngle(axe, angle_h):
 # d'apres la definition de l'appareil PWM qui est code sur 12 bits (4096 max).
 # La valeur par defaut est un angle de 90 degres soit la moitie.
 # Elle retourne le nombre correspondant a l'angle par defaut si l'angle n'est pas compris
-# entre 0 et 180 degres.
+# entre l'angle minimum et maximum.
 def angleToPulse(angle = 90):
 	pulse = ANGLE_DEFAUT
 	
@@ -98,7 +98,7 @@ DEBUG = False
 #
 
 # Verifie le nombre d'arguments (le troisieme argument est facultatif)
-if len(sys.argv) != 3:
+if len(sys.argv) != 3 and len(sys.argv) != 4:
 	sys.exit(ERREUR = 1)
 
 # Recupere si possible le mode debug
@@ -116,9 +116,9 @@ angle_h = int(sys.argv[1])
 angle_v = int(sys.argv[2])
 
 # Verifie que les angles sont valides
-if angle_h < 0 or angle_h > 180 or angle_v < 0 or angle_v > 180:
+if angle_h < angle_min or angle_h > angle_max or angle_v < angle_min or angle_v > angle_max:
 	if DEBUG == True:
-		print "L'angle horizontal et/ou vertical n'est pas compris entre 0 et 180 degres."
+		print "L'angle horizontal et/ou vertical n'est pas compris entre %d et %d degres." % (angle_min, angle_max)
 	sys.exit(ERREUR = 4)
 
 # Initialise l'appareil PWM

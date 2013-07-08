@@ -1,6 +1,5 @@
-Raspberry Pi - Servomoteur
+Raspberry Pi - Servomoteur ![Logo du Raspberry Pi](/RPI.png)
 ==========================
-![Logo du Raspberry Pi](/RPI.jpg)
 
 Description
 ===========

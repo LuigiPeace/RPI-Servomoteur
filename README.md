@@ -23,7 +23,7 @@ situation (adresse, fréquence, canals, angles).
 
 Exemple
 =======
-Commande : sudo servomoteur_rpi.py 45 160
+Commande : sudo python servomoteur_rpi.py 45 160
 
 Cette commande exécute le script avec un angle horizontal de 45° et un angle
 vertical de 160°.

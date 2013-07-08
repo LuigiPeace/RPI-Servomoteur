@@ -25,9 +25,11 @@ vertical de 160°.
 
 Erreurs
 =======
+Si une erreur est rencontrée le script s'arrête et retourne un code erreur.
+
 <table>
 	<tr>
-		<td>Code erreur</td>
+		<td style="width:3em;">Code erreur</td>
 		<td>Description</td>
 	</tr>
 	
@@ -49,9 +51,3 @@ Erreurs
 			script s'arrête.</td>
 	</tr>
 </table>
-Valeur | Description
-     1 | Si les deux arguments requis ne sont par fournis le script s'arrête.
-	 2 | Si le nom du script ne correspond pas à celui de la variable
-	   | NOM_SCRIPT le script s'arrête.
-	 4 | Si au moins l'un des angles n'est pas compris entre 0° et 180° le
-	   | script s'arrête.

@@ -1,13 +1,5 @@
- ____    ____    ______      ____                                                       __                           
-/\  _`\ /\  _`\ /\__  _\    /\  _`\                                                    /\ \__                        
-\ \ \L\ \ \ \L\ \/_/\ \/    \ \,\L\_\     __   _ __   __  __    ___     ___ ___     ___\ \ ,_\    __   __  __  _ __  
- \ \ ,  /\ \ ,__/  \ \ \     \/_\__ \   /'__`\/\`'__\/\ \/\ \  / __`\ /' __` __`\  / __`\ \ \/  /'__`\/\ \/\ \/\`'__\
-  \ \ \\ \\ \ \/    \_\ \__    /\ \L\ \/\  __/\ \ \/ \ \ \_/ |/\ \L\ \/\ \/\ \/\ \/\ \L\ \ \ \_/\  __/\ \ \_\ \ \ \/ 
-   \ \_\ \_\ \_\    /\_____\   \ `\____\ \____\\ \_\  \ \___/ \ \____/\ \_\ \_\ \_\ \____/\ \__\ \____\\ \____/\ \_\ 
-    \/_/\/ /\/_/    \/_____/    \/_____/\/____/ \/_/   \/__/   \/___/  \/_/\/_/\/_/\/___/  \/__/\/____/ \/___/  \/_/ 
-
-																			 par http://www.network-science.de/ascii/
-
+Raspberry Pi - Servomoteur
+==========================
 
 Description
 ===========
@@ -28,11 +20,35 @@ Exemple
 =======
 Commande : sudo servomoteur_rpi.py 45 160
 
-Cette commande exécute le script avec un angle horizontal de  45° et
-									  un angle vertical   de 160°.
+Cette commande exécute le script avec un angle horizontal de 45° et un angle
+vertical de 160°.
 
 Erreurs
 =======
+<table>
+	<tr>
+		<td>Code erreur</td>
+		<td>Description</td>
+	</tr>
+	
+	<tr>
+		<td>1</td>
+		<td>Si les deux arguments requis ne sont par fournis le script s'
+			arrête.</td>
+	</tr>
+	
+	<tr>
+		<td>2</td>
+		<td>Si le nom du script ne correspond pas à celui de la variable
+			NOM_SCRIPT le script s'arrête.</td>
+	</tr>
+	
+	<tr>
+		<td>4</td>
+		<td>Si au moins l'un des angles n'est pas compris entre 0° et 180° le
+			script s'arrête.</td>
+	</tr>
+</table>
 Valeur | Description
      1 | Si les deux arguments requis ne sont par fournis le script s'arrête.
 	 2 | Si le nom du script ne correspond pas à celui de la variable

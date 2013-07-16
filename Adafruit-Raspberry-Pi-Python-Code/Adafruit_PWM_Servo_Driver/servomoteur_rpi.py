@@ -1,4 +1,3 @@
-#!/usr/bin/python
 
 from Adafruit_PWM_Servo_Driver import PWM
 import time, sys
@@ -59,7 +58,7 @@ ADRESSE = 0x40
 
 # Angles (coder sur 12 bits pour PWM)
 ANGLE_DEFAUT = 410
-ANGLE_MIN = 140
+ANGLE_MIN = 150
 ANGLE_MAX = 680
 ANGLE_DELTA = ANGLE_MAX - ANGLE_MIN
 
@@ -85,9 +84,6 @@ ERREUR = 0
 # 2 : premier argument du script ne correspond pas au nom definit.
 # 4 : les angles passes en arguments du script sont invalides.
 
-# Appareil PWM
-PWM
-
 # Mode debug
 DEBUG = False
 
@@ -97,40 +93,47 @@ DEBUG = False
 # DEBUT DU PROGRAMME
 #
 
-# Verifie le nombre d'arguments (le troisieme argument est facultatif)
-if len(sys.argv) != 3 and len(sys.argv) != 4:
-	sys.exit(ERREUR = 1)
+def main():
+	# Verifie le nombre d'arguments (le troisieme argument est facultatif)
+	if len(sys.argv) != 3 and len(sys.argv) != 4:
+		ERREUR = 1
+		return ERREUR
 
-# Recupere si possible le mode debug
-if len(sys.argv) == 4:
-	DEBUG = bool(sys.argv[3])
+	# Recupere si possible le mode debug
+	if len(sys.argv) == 4:
+		DEBUG = bool(sys.argv[3])
 
-# Verifie que le nom du script apparait dans le premier argument
-if sys.argv[0].count(NOM_SCRIPT) != 1:
-	if DEBUG == True:
-		print "Le nom du script ne correspond a celui declarer dans la variable."
-	sys.exit(ERREUR = 2)
+	# Verifie que le nom du script apparait dans le premier argument
+	if sys.argv[0].count(NOM_SCRIPT) != 1:
+		if DEBUG == True:
+			print "Le nom du script ne correspond a celui declarer dans la variable."
+		ERREUR = 2
+		return ERREUR
 
-# Recupere les angles horizontal et vertical (en degres) et les converties en entier
-angle_h = int(sys.argv[1])
-angle_v = int(sys.argv[2])
+	# Recupere les angles horizontal et vertical (en degres) et les converties en entier
+	angle_h = int(sys.argv[1])
+	angle_v = int(sys.argv[2])
 
-# Verifie que les angles sont valides
-if angle_h < angle_min or angle_h > angle_max or angle_v < angle_min or angle_v > angle_max:
-	if DEBUG == True:
-		print "L'angle horizontal et/ou vertical n'est pas compris entre %d et %d degres." % (angle_min, angle_max)
-	sys.exit(ERREUR = 4)
+	# Verifie que les angles sont valides
+	if angle_h < angle_min or angle_h > angle_max or angle_v < angle_min or angle_v > angle_max:
+		if DEBUG == True:
+			print "L'angle horizontal et/ou vertical n'est pas compris entre %d et %d degres." % (angle_min, angle_max)
+		ERREUR = 4
+		return ERREUR
 
-# Initialise l'appareil PWM
-initPWM(ADRESSE, FREQUENCE, DEBUG)
+	# Initialise l'appareil PWM
+	initPWM(ADRESSE, FREQUENCE, DEBUG)
 
-# Modifie les angles du servomoteur
-setAngle(True, angle_h)
-setAngle(False, angle_v)
+	# Modifie les angles du servomoteur
+	setAngle(True, angle_h)
+	setAngle(False, angle_v)
 
-# Quitte avec comme code d'erreur 0
-sys.exit(ERREUR)
+	# Quitte avec comme code d'erreur 0
+	return 0
 
 #
 # FIN DU PROGRAMME
 #
+
+if __name__ == "__main__":
+    sys.exit(main())
